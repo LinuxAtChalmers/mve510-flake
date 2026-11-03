@@ -10,9 +10,17 @@
     nixpkgs,
   }: {
     nixosModules.default = {pkgs, ...}: {
-      environment.systemPackages = with pkgs; [
-        R
-        rstudio
+      environment.systemPackages = with pkgs; let
+        packages = with rPackages; [
+          MASS
+        ];
+      in [
+        (rWrapper.override {
+          inherit packages;
+        })
+        (rstudioWrapper.override {
+          inherit packages;
+        })
       ];
     };
   };
