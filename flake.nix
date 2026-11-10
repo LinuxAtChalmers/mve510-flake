@@ -21,6 +21,10 @@
         (rstudioWrapper.override {
           inherit packages;
         })
+        fastqc
+        # fastx-toolkit
+        bwa
+        samtools
       ];
     };
   };
