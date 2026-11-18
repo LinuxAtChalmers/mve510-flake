@@ -35,6 +35,7 @@
         self.packages.${pkgs.stdenv.hostPlatform.system}.fastx-toolkit
         bwa
         samtools
+        igv
       ];
     };
   };
