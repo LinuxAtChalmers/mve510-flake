@@ -6,7 +6,7 @@
 }:
 stdenv.mkDerivation rec {
   name = "libgtextutils";
-  version = "0.0.7";
+  version = "0.7";
 
   nativeBuildInputs = [autoreconfHook];
 
