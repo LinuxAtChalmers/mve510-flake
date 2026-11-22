@@ -16,13 +16,14 @@
   in {
     packages = forAllSystems (system: let
       pkgs = import nixpkgs {inherit system;};
-      pkgs-unstable = import nixpkgs-unstable {inherit system;};
     in rec {
       libgtextutils = pkgs.callPackage ./packages/libgtextutils.nix {};
       fastx-toolkit = pkgs.callPackage ./packages/fastx-toolkit.nix {inherit libgtextutils;};
     });
 
-    nixosModules.default = {pkgs, ...}: {
+    nixosModules.default = {pkgs, ...}: let
+      pkgs-unstable = import nixpkgs-unstable {system = pkgs.stdenv.hostPlatform.system;};
+    in {
       environment.systemPackages = with pkgs; let
         packages = with pkgs-unstable.rPackages; [
           MASS
